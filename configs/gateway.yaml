@@ -1,0 +1,41 @@
+# Gateway Configuration
+server:
+  host: "0.0.0.0"
+  port: 8080
+
+# Rate Limiter Configuration
+limiter:
+  default_rate: 1000.0      # 默认每秒1000个请求
+  max_rate: 10000.0         # 最大限流速率
+  cleanup_interval: "5m"    # 清理间隔
+
+# Circuit Breaker Configuration
+breaker:
+  failure_threshold: 10     # 失败次数阈值
+  recovery_timeout: "30s"   # 恢复超时时间
+  recovery_increment: 0.2   # 恢复增量(20%)
+
+# Error Sampler Configuration
+sampler:
+  sampling_rate: 0.05       # 采样率(5%)
+  buffer_size: 1000         # 缓冲区大小
+
+# Kafka Configuration
+kafka:
+  brokers:
+    - "localhost:9092"
+  topic: "error-events"
+
+# ETCD Configuration
+etcd:
+  endpoints:
+    - "localhost:2379"
+  username: ""
+  password: ""
+  timeout: "5s"
+
+# Metrics Configuration
+metrics:
+  enabled: true
+  port: 9090
+  path: "/metrics"
